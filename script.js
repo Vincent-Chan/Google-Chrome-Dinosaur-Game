@@ -42,6 +42,16 @@ let gravity = 0.4;
 let gameOver = false;
 let score = 0;
 
+// cloud
+let cloudWidth = 101;
+let cloudHeight = 84;
+let cloudX = 700;
+let cloudY = 75;
+
+let cloudImg;
+
+let cloudArray = [];
+
 
 
 window.onload = function() {
@@ -71,6 +81,10 @@ window.onload = function() {
 
     cactus3Img = new Image();
     cactus3Img.src = "./cactus3.png";
+
+
+    cloudImg = new Image();
+    cloudImg.src = "./cloud.png";
 
     requestAnimationFrame(update);
     // 1000 milliseconds = 1 seconds
@@ -112,6 +126,13 @@ function update() {
                 }
             }
     
+    }
+
+    for (let i = 0; i < cloudArray.length; ++i)
+    {
+        let cloud = cloudArray[i];
+        cloud.x += velocityX;
+        context.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
     }
 
 
@@ -183,6 +204,35 @@ function placeCactus() {
         // remove the first element from the array so that the array does not constantly grow
         cactusArray.shift();
     }
+}
+
+function placeCloud() {
+
+    if (gameOver) {
+        return;
+    }
+
+    let cloud = {
+        img : cloudImg,
+        x : cloudX,
+        y : cloudY,
+        width : cloudWidth,
+        height : cloudHeight
+    }
+
+    let placeCloudChance = Math.random();
+
+    // 30% chance you will get a cloud
+    if (placeCloudChance > 0.7)
+    {
+        cloudArray.push(cloud);
+    }
+
+    if (cloudArray.length > 5)
+    {
+        cloudArray.shift();
+    }
+
 }
 
 function detectCollision(a, b) {
