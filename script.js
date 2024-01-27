@@ -244,8 +244,8 @@ function placeCloud() {
 
     let placeCloudChance = Math.random();
 
-    // 30% chance you will get a cloud
-    if (placeCloudChance > 0.7)
+    // 50% chance you will get a cloud
+    if (placeCloudChance > 0.5)
     {
         cloudArray.push(cloud);
     }
