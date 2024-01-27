@@ -113,7 +113,7 @@ function moveDino(e) {
     if ((e.code == "Space" || e.code == "ArrowUp") && dino.y == dinoY)
     {
         // jump
-        velocity = -10;
+        velocityY = -10;
     }
 }
 
