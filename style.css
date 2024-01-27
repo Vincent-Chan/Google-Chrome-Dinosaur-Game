@@ -4,6 +4,9 @@ body {
 }
 
 #board {
-    background-color: rgb(128, 128, 128);
+    background-color: rgb(168, 168, 168);
+    border-top: 1px solid black;
     border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
