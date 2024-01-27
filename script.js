@@ -43,10 +43,10 @@ let gameOver = false;
 let score = 0;
 
 // cloud
-let cloudWidth = 101;
-let cloudHeight = 84;
+let cloudWidth = 84;
+let cloudHeight = 101;
 let cloudX = 700;
-let cloudY = 75;
+let cloudY = 50;
 
 let cloudImg;
 
@@ -101,7 +101,7 @@ window.onload = function() {
     cloudImg.src = "./cloud.png";
 
     GameOverImg = new Image();
-    GameOverImg.src = "./reset.png";
+    GameOverImg.src = "./game-over.png";
 
     requestAnimationFrame(update);
     // 1000 milliseconds = 1 seconds
@@ -127,6 +127,7 @@ function update() {
     dino.y = Math.min(dino.y + velocityY, dinoY);
     context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
 
+
     // cactus
     for (let i = 0; i < cactusArray.length; ++i)
     {
@@ -142,14 +143,15 @@ function update() {
                     context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
                 }
 
-                GameOver.src = "./reset.png";
-                GameOver.onload = function() {
+                GameOverImg.src = "./game-over.png";
+                GameOverImg.onload = function() {
                     context.drawImage(GameOverImg, GameOver.x, GameOver.y, GameOver.width, GameOver.height);
                 }
             }
     
     }
 
+    // cloud
     for (let i = 0; i < cloudArray.length; ++i)
     {
         let cloud = cloudArray[i];
