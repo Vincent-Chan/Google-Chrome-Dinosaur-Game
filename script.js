@@ -52,6 +52,20 @@ let cloudImg;
 
 let cloudArray = [];
 
+// Game Over
+let GameOverWidth = 386;
+let GameOverHeight = 40;
+let GameOverX = 375;
+let GameOverY = 125;
+let GameOverImg;
+
+let GameOver = {
+    x : GameOverX,
+    y : GameOverY,
+    width : GameOverWidth,
+    height : GameOverHeight
+}
+
 
 
 window.onload = function() {
@@ -85,6 +99,9 @@ window.onload = function() {
 
     cloudImg = new Image();
     cloudImg.src = "./cloud.png";
+
+    GameOverImg = new Image();
+    GameOverImg.src = "./reset.png";
 
     requestAnimationFrame(update);
     // 1000 milliseconds = 1 seconds
@@ -123,6 +140,11 @@ function update() {
                 dinoImg.src = "./dino-dead.png";
                 dinoImg.onload = function() {
                     context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
+                }
+
+                GameOver.src = "./reset.png";
+                GameOver.onload = function() {
+                    context.drawImage(GameOverImg, GameOver.x, GameOver.y, GameOver.width, GameOver.height);
                 }
             }
     
