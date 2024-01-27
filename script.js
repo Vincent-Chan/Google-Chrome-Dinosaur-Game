@@ -55,8 +55,8 @@ let cloudArray = [];
 // Game Over
 let GameOverWidth = 386;
 let GameOverHeight = 40;
-let GameOverX = 375;
-let GameOverY = 125;
+let GameOverX = 182;
+let GameOverY = 75;
 let GameOverImg;
 
 let GameOver = {
