@@ -102,7 +102,25 @@ function update() {
         let cactus = cactusArray[i];
         cactus.x += velocityX;
         context.drawImage(cactus.img, cactus.x, cactus.y, cactus.width, cactus.height);
+    
+            if (detectCollision(dino, cactus))
+            {
+                gameOver = true;
+                dinoImg.src = "./dino-dead.png";
+                dinoImg.onload = function() {
+                    context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
+                }
+            }
+    
     }
+
+
+    // score
+    context.fillStyle = "black";
+    context.font = "20px courier";
+    ++score;
+    context.fillText(score, 5, 20);
+
 }
 
 function moveDino(e) {
@@ -115,6 +133,10 @@ function moveDino(e) {
         // jump
         velocityY = -10;
     }
+    else if (e.code == "ArrowDown" && dino.y == dinoY)
+    {
+        // duck
+    }
 }
 
 function placeCactus() {
@@ -125,11 +147,11 @@ function placeCactus() {
 
     // place the cactus
     let cactus = {
-        img: null,
-        x: cactusX,
-        y: cactusY,
-        width: null,
-        height: cactusHeight
+        img : null,
+        x : cactusX,
+        y : cactusY,
+        width : null,
+        height : cactusHeight
     }
 
     // It gives a value between 0 to 0.999...
@@ -161,4 +183,16 @@ function placeCactus() {
         // remove the first element from the array so that the array does not constantly grow
         cactusArray.shift();
     }
+}
+
+function detectCollision(a, b) {
+    // a's top left corner doesn't reach b's top right corner
+    // a's top right corner passes b's top left corner
+    // a's top left corner doesn't reach b's bottom left corner
+    // a's bottom left corner passes b's top left corner
+
+    return (a.x < b.x + b.width) && 
+    (a.x + a.width > b.x) && 
+    (a.y < b.y + b.height) && 
+    (a.y + a.height > b.y)
 }
